@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+{% if user.is_authenticated %}
+<div class="row">
+    <div class="col-6">
+    <h2>изменить профиль пользователя {{ user }}</h2>
+    <br>
+    <p>Используйте форму ниже чтобы что-то поменять в профиле:</p>
+    <form method="POST" enctype="multipart/form-data">
+      {{ form  }}
+      {% csrf_token %}
+      <button class="btn btn-outline-dark" type="submit">Сохранить</button>
+    </form>
+    </div>
+</div>
+<br>
+{% endif %}
+{% endblock %}

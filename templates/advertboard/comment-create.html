@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="GET">
+    {{ filter.form }}
+    <input type="submit" value="Найти">
+    </form>
+<hr>
+{%for advert in filter.qs%}
+<h2><a href="{{advert.get_absolute_url}}">{{advert.subject}}</a></h2>
+<p>Сообщение от пользователя {{advert.user}}</p>
+<p>{{advert.created}}</p>
+
+<hr>
+{%endfor%}
+<form method="POST">
+    {% csrf_token %}
+    {{ form }} <!-- Теперь нам нужна только готовая форма и кнопка -->
+    <input type="submit" value="Добавить отклик">
+</form>
+
+<p><a href="/">В начало</a></p>
+
+
+{% endblock content%}

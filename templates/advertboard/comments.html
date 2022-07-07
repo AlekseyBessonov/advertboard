@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if comments %}
+        {% for comment in comments %}
+           <article class="form-control">
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h3 class="fw-bolder mb-1">Post: {{ comment.post_title }}</h3>
+                    <!-- Post meta content-->
+                        <div class="text-muted fst-italic mb-2">Posted on {{ comment.created|date:'d-M-Y' }} {{ comment.created|time:"H:i" }} by {{ comment.user }} </div>
+                    <!-- Post categories-->
+                </header>
+                <section class="mb-5">
+                    {{ comment.user_reply }}
+                </section>
+               <a class="remove" href="{% url 'comment_delete' comment.pk %}">Удалить комментарий</a>
+            </article>
+
+        {% endfor %}
+    {% else %} <!-- Если товаров нет, то говорим что товаров нет ;) -->
+        <h2> Comments not found</h2>
+    {% endif %}
+
+
+<p><a href="/">В начало</a></p>
+
+
+{% endblock content%}

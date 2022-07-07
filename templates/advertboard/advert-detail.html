@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h2>{{advert.subject}}</h2>
+<p>Категория: {{advert.category}}</p>
+<p>{{advert.description}}</p>
+<p>{{advert.created}}</p>
+<p>Сообщение от пользователя {{advert.user}}</p>
+<hr>
+{% if comments %}
+        {% for comment in comments %}
+<p>Комментарий от {{comment.user}}</p>
+<p> {{comment.user_reply}}</p>
+<p>Комментарий оставлен{{comment.created}}</p>
+<hr>
+
+        {%endfor%}
+    {%else%} Нет комментариев
+{%endif%}
+
+
+<a class="nav-link active" aria-current="page" href="comments/">Комментировать</a>
+
+<hr>
+
+
+{% endblock content%}
